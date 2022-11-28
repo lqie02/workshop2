@@ -87,12 +87,6 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
 			
 
-
-
-
-			<!-- <div class="input-group">
-				<input type="text" placeholder="Role" name="staffType" value="<?php echo $staffType; ?>" required>
-			</div> -->
 			<div class="input-group">
 				<input type="password" placeholder="Password" name="password" value="<?php echo $password; ?>" required>
             </div>
