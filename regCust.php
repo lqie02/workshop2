@@ -74,10 +74,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 				<input type="text" placeholder="Address" name="address" value="<?php echo $address; ?>" required>
 			</div>
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $password; ?>" required>
+				<input pattern=".{8,}" type="password" placeholder="Password" name="password"  value="<?php echo $password; ?>" required title="8 characters minimum">
             </div>
             <div class="input-group">
-				<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $cpassword; ?>" required>
+				<input pattern=".{8,}" type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $cpassword; ?>" required title="8 characters minimum">
 			</div>
 			<div class="input-group">
 				<button name="submit" class="btn">Register</button>
