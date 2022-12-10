@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .dropbtn {
   background-color: #04AA6D;
   color: white;
-  padding: 16px;
+  padding: 16pxa;
   font-size: 16px;
   border: none;
 }
