@@ -25,22 +25,28 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	if($password != $cpassword)
 	{
 		echo "<script>alert('Two passwords that enter do not match');</script>";
-		echo"<meta http-equiv='refresh' content='0; url=regCust.php'/>";
+		echo"<meta http-equiv='refresh' content='0; url=regStaff.php'/>";
 	} 
 	else 
 	{
 		
-		//$qry="SELECT d.department_id FROM department d join staff s ON s.department_id= d.department_id WHERE staffType=$staffType";
-		//$result = $mysqli -> query($qry);
-		//$row = $result -> fetch_assoc();
-
-		//$result = mysqli_query($conn, $query);
-		//$row = mysqli_fetch_assoc($result);
+		/*$qry="SELECT distinct d.department_id FROM department d join staff s ON s.department_id= d.department_id WHERE staffType=$staffType";
 		
-		$query = "INSERT INTO staff(staffName, staffEmail, staffType, staffPassword,manager_id,department_id) VALUES ('$staffName', '$staffEmail', '$staffType', '$password', 11000, '$department_id')";
+		$result = $conn -> query($qry);
+		if($result->num_rows>0)
+		{
+			while($result-> fetch_assoc())
+			{
+				$department_id = 'department_id';
+			}
+		}*/
+		
+		
+		
+		$query = "INSERT INTO staff(staffName, staffEmail, staffType, staffPassword,admin_id,department_id) VALUES ('$staffName', '$staffEmail', '$staffType', '$password', 11000,'$department_id' )";
 
 		
-			if(mysqli_query($conn, $query))
+			if($conn->query($query))
 			{
 				echo "<script>alert('Sucessfully register! Please proceed to login.');</script>";
 				echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'/>";
@@ -49,12 +55,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			{
 				echo "<script>alert('Registration fail! Please try again. ');</script>";
 
-
-				echo"<meta http-equiv='refresh' content='0; url=reg_cust.php'/>";
+				echo"<meta http-equiv='refresh' content='0; url=regStaff.php'/>";
 			}
 		}
-		
-   	 
 }
 
 
@@ -85,41 +88,32 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			</div>
 
 
-			
-
 			<div class="input-group">
-				<input type="password" placeholder="Password" name="password" value="<?php echo $password; ?>" required>
+				<input pattern=".{8,}" type="password" placeholder="Password" name="password" value="<?php echo $password; ?>" required title="8 characters minimum">
             </div>
             <div class="input-group">
-				<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $cpassword; ?>" required>
+				<input pattern=".{8,}" type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $cpassword; ?>" required title="8 characters minimum">
 			</div>
 
 			<div calss = "form-group">
 				<label class = "col-sm-3 control-label"> &nbsp;Select role&nbsp;&nbsp;</label> 
 			<select class="form-control" name="staffType" value="<?php echo $staffType; ?>" required>
                     	 <option selected="true" disabled="disabled" value="">- Select role -</option >
-                     	 <option value="rider">Rider</option>
-                     	 <option value="hr Staff">HR Staff</option>
-                     	 <option value="kitchen Staff">Kitchen Staff</option>
-                     	 <option value="Floor Staff">Floor Staff</option>
+                     	 <option value="Rider">Rider</option>
+                     	 <option value="Manager">Manager</option>
+                     	 
             </select> 
         </div></br>
 		
-		
-	
-			 <div calss = "form-group">
+		 <div calss = "form-group">
 				<label class = "col-sm-3 control-label"> &nbsp;Select Department&nbsp;&nbsp;</label> 
 			<select class="form-control" name="department_id" value="<?php echo $department_id; ?>" required>
                     	 <option selected="true" disabled="disabled" value="">- Select department -</option >
-                     	 <option value=8003>Rider</option>
-                     	 <option value=8004>HR</option>
-                     	 <option value=8002>Kitchen</option>
-                     	 <option value=8001>Floor</option>
-				
-				
-				
+                     	 <option value=8001>Rider</option>
+                     	 <option value=8000>Management</option>		
             </select> 
         </div></br> 
+		
 
 			<div class="input-group">
 				<button name="submit" class="btn">Register</button>
@@ -128,4 +122,4 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		</form>
 	</div>
 </body>
-</html>
+</html><strong></strong>
