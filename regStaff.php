@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 			if(mysqli_query($conn, $query))
 			{
 				echo "<script>alert('Sucessfully register! Please proceed to login.');</script>";
-				echo"<meta http-equiv='refresh' content='0; url=index.php'/>";
+				echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'/>";
 			}
 			else
 			{
