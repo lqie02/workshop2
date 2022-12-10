@@ -116,50 +116,51 @@ if(isset($_POST['btn_login']))
 <head>
 
 	<meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="img/2.png" type="image/png" sizes="20x20">
 	
     <!-- Bootstrap core CSS-->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" type="text/css" href="style1.css">	
+    <link rel="stylesheet" type="text/css" href="style1.css">
+	<title>Staff Login</title>
 
 </head>
 <body>
-
-<section class="h-100 gradient-form">
-
-  <form name="loginForm" method="post" >
+	<div class="container">
     <form action="" method="POST" class="login-email">
       <p align="center" class="login-text" style="font-size: 2rem; font-weight: 800;">Login Staff</p>
-      <div class="container">
-        <p>Please login to your account</p>
+      
+        <p align="justify">Please login to your account :</p>
+		<br>
 
         <div class="input-group">
-          <input type="email" name="email" id="form2Example11" class="form-control" placeholder="Email address" autofocus required/>
+          <input type="email" name="email"  placeholder="Email address" autofocus required/>
         </div>
 
         <div class="input-group">
-          <input type="password" name="password" id="form2Example22" minlength="8" class="form-control" placeholder="Password" autofocus required/>
+          <input type="password" name="password"  minlength="8"  placeholder="Password" autofocus required/>
         </div>
 
-        <select class="form-control" name="role" autofocus required>
+        <div class="form-group">
+		<label class = "col-sm-3 control-label"> &nbsp;Select role&nbsp;&nbsp;</label>
+		<select class="form-control" name="role" autofocus required>
           <option selected="true" disabled="disabled" value="">- Select role -</option >
           <option value="Admin">Admin</option>
           <option value="Rider">Rider</option>
           <option value="Manager">Manager</option>
           </select>
+		</div></br>
 
-          <div class="text-center pt-3 mb-5 pb-1">
+          <div class="input-group">
           <button name="btn_login" class="btn">Log in</button>
           </div>
 
           <div class="d-flex align-items-center justify-content-center pb-4">
-          <p class="login-register-text">Don't have an account?
-          <a href="#" onclick="window.open('http://localhost/fkfood/regStaff.php')"; >Register Here</a>.</p>
+          <p align="center" class="login-register-text">Don't have an account?
+          <a href="regStaff.php" >Register Here</a>.</p>
           </div>
 
           <div class="result text-center mb-0 text-danger"  id="result"><p><?php echo $msg?></p>
