@@ -30,9 +30,10 @@ if(isset($_POST['btn_login']))
         $_SESSION['customer_id'] = $row["customer_id"];
         $_SESSION['custname'] = $row['custName'];
 
-       // mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
+       
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=location.php'>";
+        echo"<meta http-equiv='refresh' content='0; url=http://localhost/fkfood/Location.php />";
+		  
       }
       else
         echo "<script>alert('Woops! Email or Password was wrong');</script>";
@@ -76,10 +77,6 @@ if(isset($_POST['btn_login']))
           <input type="password" name="password" id="form2Example22" minlength="8" class="form-control" placeholder="Password" autofocus required/>
         </div>
 
-     <!--    <select class="form-control" name="role" autofocus required>
-          <option selected="true" disabled="disabled" value="">- Select role -</option >
-          <option value="Staff">Customer</option>
-          </select> -->
 
           <div class="text-center pt-3 mb-5 pb-1">
           <a href="location.php"></a><button name="btn_login" class="btn">Log in></button>
@@ -87,7 +84,7 @@ if(isset($_POST['btn_login']))
 
           <div class="d-flex align-items-center justify-content-center pb-4">
           <p class="login-register-text">Don't have an account?
-          <a href="#" onclick="window.open('http://localhost/fkfood/register.php')"; >Register Here</a>.</p>
+          <a href="#" onclick="window.open('http://localhost/fkfood/regCust.php')"; >Register Here</a>.</p>
           </div>
 
           <div class="result text-center mb-0 text-danger"  id="result"><p><?php echo $msg?></p>
