@@ -82,7 +82,7 @@ if(isset($_POST['btn_login']))
           </select> -->
 
           <div class="text-center pt-3 mb-5 pb-1">
-          <a href="products.php"></a><button name="btn_login" class="btn">Log in></button>
+          <a href="customer/viewmenu.php"></a><button name="btn_login" class="btn">Log in></button>
           </div>
 
           <div class="d-flex align-items-center justify-content-center pb-4">
