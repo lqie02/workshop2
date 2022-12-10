@@ -1,6 +1,6 @@
 <?php  
 
-include "config.php";
+include "connection.php";
 error_reporting(0);
 session_start();
 
@@ -36,7 +36,7 @@ if(isset($_POST['btn_login']))
         $_SESSION['staffEmail'] = $row['staffEmail'];
 
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=products.php'>";
+        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'>";
       }
       else
       {
@@ -59,7 +59,7 @@ if(isset($_POST['btn_login']))
         $_SESSION['staffEmail'] = $row['staffEmail'];
         
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=products.php'>";
+        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'>";
       }
       else
       { echo "<script>alert('Woops! Email or Password was wrong');</script>";
@@ -82,7 +82,7 @@ if(isset($_POST['btn_login']))
         
         
       echo "<script>alert('Login Success!');</script>";
-      echo"<meta http-equiv='refresh' content='0; url=products.php'>";
+      echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'>";
       }
       else
       {
