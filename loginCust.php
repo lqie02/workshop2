@@ -39,24 +39,6 @@ if(isset($_POST['btn_login']))
         echo"<meta http-equiv='refresh' content='0; url=loginCustomer.php'>";
 
 }
-
-
-  // Getting IP Address
-  function getIpAddr(){
-  if (!empty($_SERVER['HTTP_CLIENT_IP']))
-  {
-    $ipAddr=$_SERVER['HTTP_CLIENT_IP'];
-  }
-  elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-  {
-    $ipAddr=$_SERVER['HTTP_X_FORWARDED_FOR'];
-  }
-  else
-  {
-    $ipAddr=$_SERVER['REMOTE_ADDR'];
-  }
-  return $ipAddr;
-  }
 ?>
 
 <!DOCTYPE html>
