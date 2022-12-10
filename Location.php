@@ -47,10 +47,10 @@
 <div class="dropdown">
   <button class="dropbtn">Choose Location</button>
   <div class="dropdown-content">
-    <a href="products.php">Bangi</a>
-    <a href="products.php">Shah Alam2</a>
-    <a href="products.php">Putrajaya</a>
-    <a href="products.php">Petaling Jaya</a>
+    <a href="customer/viewmenu.php">Bangi</a>
+    <a href="customer/viewmenu.php">Shah Alam2</a>
+    <a href="customer/viewmenu.php">Putrajaya</a>
+    <a href="customer/viewmenu.php">Petaling Jaya</a>
   </div>
 </div>
 
