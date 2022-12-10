@@ -8,6 +8,7 @@ $msg='';
 
 if(isset($_POST['btn_login']))
 {
+
   function test_input($data) 
   {
       $data = trim($data);
@@ -15,59 +16,30 @@ if(isset($_POST['btn_login']))
       $data = htmlspecialchars($data);
       return $data;
   }
-
-  $time=time()-30;
-  $ip_address=getIpAddr();
-
-  // Getting total count of hits on the basis of IP
-  $query = mysqli_query($conn, "select count(*) as total_count from loginlogs where TryTime > $time and IpAddress='$ip_address'"); 
-  $check_login_row=mysqli_fetch_assoc($query);
-  $total_count=$check_login_row['total_count'];
-
-  //Checking if the attempt 3, or you can set the no of attempt her. For now we taking only 3 fail attempted
-  if($total_count == 3)
-  {
-    $msg="To many failed login attempts. Please login after 30 sec";
-  }
-  else
-  { 
-    //Getting Post Values
-    $email = test_input($_POST['email']);
+   $email = test_input($_POST['email']);
     $password = test_input($_POST['password']);
 
-    $sql ="SELECT * FROM customer WHERE custEmail = '".$email."' AND custPassword = '".$password."'";
+      $sql ="SELECT * FROM customer WHERE custEmail = '".$email."' AND custPassword = '".$password."'";
 
-      $result = mysqli_query($conn, $sql);
-
-      if ($result->num_rows($result) > 0)
+      $result = $conn->query($sql);
+    
+      if($result->num_rows > 0)
       {
-        $row = mysqli_fetch_assoc($result);
+        $row = $result->fetch_assoc();
 
         $_SESSION['customer_id'] = $row["customer_id"];
-        $_SESSION['custName'] = $row['custName'];
-        $_SESSION['custEmail'] = $row['custEmail'];
+        $_SESSION['custname'] = $row['custName'];
 
-        mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
+       // mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=customer/dashboard.php'/>";
+        echo"<meta http-equiv='refresh' content='0; url=products.php'>";
       }
       else
-      {
-        $total_count++;
-        $rem_attm = 3 - $total_count;
-        if($rem_attm==0)
-        {
-          $msg="To many failed login attempts. Please login after 30 sec";
-        }
-        else
-        {
-          $msg="Please enter valid login details.<br/>$rem_attm attempts remaining";
-        }
-        $try_time=time();
-        mysqli_query($conn,"insert into loginlogs(IpAddress,TryTime) values('$ip_address','$try_time')");
-      }
-  }
+        echo "<script>alert('Woops! Email or Password was wrong');</script>";
+        echo"<meta http-equiv='refresh' content='0; url=loginCustomer.php'>";
+
 }
+
 
   // Getting IP Address
   function getIpAddr(){
@@ -91,17 +63,17 @@ if(isset($_POST['btn_login']))
 <html lang="en">
 <head>
 
-  <meta charset="utf-8">
+	<meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  
+	
     <!-- Bootstrap core CSS-->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Custom styles for this template-->
-    <link rel="stylesheet" type="text/css" href="style1.css"> 
+    <link rel="stylesheet" type="text/css" href="style1.css">	
 
 </head>
 <body>
@@ -122,8 +94,13 @@ if(isset($_POST['btn_login']))
           <input type="password" name="password" id="form2Example22" minlength="8" class="form-control" placeholder="Password" autofocus required/>
         </div>
 
+     <!--    <select class="form-control" name="role" autofocus required>
+          <option selected="true" disabled="disabled" value="">- Select role -</option >
+          <option value="Staff">Customer</option>
+          </select> -->
+
           <div class="text-center pt-3 mb-5 pb-1">
-          <button name="btn_login" class="btn">Log in</button>
+          <a href="products.php"></a><button name="btn_login" class="btn">Log in></button>
           </div>
 
           <div class="d-flex align-items-center justify-content-center pb-4">
@@ -139,5 +116,3 @@ if(isset($_POST['btn_login']))
   </section>
 </body>
 </html>
-
-  
