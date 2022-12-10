@@ -1,6 +1,6 @@
 <?php  
 
-include "connection.php";
+include "config.php";
 error_reporting(0);
 session_start();
 
@@ -16,28 +16,12 @@ if(isset($_POST['btn_login']))
       $data = htmlspecialchars($data);
       return $data;
   }
-
-  $time=time()-30;
-  $ip_address=getIpAddr();
-
-  // Getting total count of hits on the basis of IP
-  $query = mysqli_query($conn, "select count(*) as total_count from loginlogs where TryTime > $time and IpAddress='$ip_address'"); 
-  $check_login_row=mysqli_fetch_assoc($query);
-  $total_count=$check_login_row['total_count'];
-
-  //Checking if the attempt 3, or youcan set the no of attempt her. For now we taking only 3 fail attempted
-  if($total_count == 3)
-  {
-    $msg="To many failed login attempts. Please login after 30 sec";
-  }
-  else
-  {
     //Getting Post Values
     $email = test_input($_POST['email']);
     $password = test_input($_POST['password']);
     $role = test_input($_POST['role']);
   
-    switch ($role) {
+      switch ($role) {
       case "Admin":
       $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."'";
 
@@ -50,26 +34,15 @@ if(isset($_POST['btn_login']))
         $_SESSION['admin_id'] = $row["admin_id"];
         $_SESSION['staffName'] = $row['staffName'];
         $_SESSION['staffEmail'] = $row['staffEmail'];
-        
-        mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
+
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=admin/index.php?dashboard'>";
+        echo"<meta http-equiv='refresh' content='0; url=products.php'>";
       }
       else
       {
-        $total_count++;
-        $rem_attm = 3 - $total_count;
-        if($rem_attm==0)
-        {
-          $msg="To many failed login attempts. Please login after 30 sec";
-        }
-        else
-        {
-          $msg="Please enter valid login details.<br/>$rem_attm attempts remaining";
-        }
-        $try_time=time();
-        mysqli_query($conn,"insert into loginlogs(IpAddress,TryTime) values('$ip_address','$try_time')");
-      }
+       echo "<script>alert('Woops! Email or Password was wrong');</script>";
+        echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'>";
+      } 
       break;
     
     case "Manager":
@@ -85,26 +58,14 @@ if(isset($_POST['btn_login']))
         $_SESSION['staffName'] = $row['staffName'];
         $_SESSION['staffEmail'] = $row['staffEmail'];
         
-        mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=admin/index.php?dashboard'>";
+        echo"<meta http-equiv='refresh' content='0; url=products.php'>";
       }
       else
-      {
-        $total_count++;
-        $rem_attm = 3 - $total_count;
-        if($rem_attm==0)
-        {
-          $msg="To many failed login attempts. Please login after 30 sec";
-        }
-        else
-        {
-          $msg="Please enter valid login details.<br/>$rem_attm attempts remaining";
-        }
-        $try_time=time();
-        mysqli_query($conn,"insert into loginlogs(IpAddress,TryTime) values('$ip_address','$try_time')");
+      { echo "<script>alert('Woops! Email or Password was wrong');</script>";
+    echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'>";
       }
-      break;
+       break;
 
       case "Staff":
       $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."'";
@@ -119,51 +80,25 @@ if(isset($_POST['btn_login']))
         $_SESSION['staffName'] = $row['staffName'];
         $_SESSION['staffEmail'] = $row['staffEmail'];
         
-        mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
-        echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=admin/index.php?dashboard'>";
+        
+      echo "<script>alert('Login Success!');</script>";
+      echo"<meta http-equiv='refresh' content='0; url=products.php'>";
       }
       else
       {
-        $total_count++;
-        $rem_attm = 3 - $total_count;
-        if($rem_attm==0)
-        {
-          $msg="To many failed login attempts. Please login after 30 sec";
-        }
-        else
-        {
-          $msg="Please enter valid login details.<br/>$rem_attm attempts remaining";
-        }
-        $try_time=time();
-        mysqli_query($conn,"insert into loginlogs(IpAddress,TryTime) values('$ip_address','$try_time')");
-      }
-      break;
+   echo "<script>alert('Woops! Email or Password was wrong');</script>";
+        echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'>";
+     }
+     break;
 
       default: 
       echo "<script>alert('Please select role');</script>";
-      echo"<meta http-equiv='refresh' content='0; url=index.php'/>";
+      echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'/>";
       break;
     }
-  }
+  
 }
 
-  // Getting IP Address
-  function getIpAddr(){
-  if (!empty($_SERVER['HTTP_CLIENT_IP']))
-  {
-    $ipAddr=$_SERVER['HTTP_CLIENT_IP'];
-  }
-  elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
-  {
-    $ipAddr=$_SERVER['HTTP_X_FORWARDED_FOR'];
-  }
-  else
-  {
-    $ipAddr=$_SERVER['REMOTE_ADDR'];
-  }
-  return $ipAddr;
-  }
 ?>
 
 <!DOCTYPE html>
