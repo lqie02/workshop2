@@ -23,7 +23,7 @@ if(isset($_POST['btn_login']))
   
       switch ($role) {
       case "Admin":
-      $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."'";
+      $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."' AND staffType = '".$role."'";
 
       //$result = mysqli_query($conn, $sql);
 	  $result = $conn->query($sql);
@@ -32,22 +32,25 @@ if(isset($_POST['btn_login']))
       {
         $row = $result->fetch_assoc();
 
-        $_SESSION['admin_id'] = $row["admin_id"];
+        $_SESSION['staff_id'] = $row["staff_id"];
         $_SESSION['staffName'] = $row['staffName'];
         $_SESSION['staffEmail'] = $row['staffEmail'];
+		$_SESSION['staffType'] = $row['staffType'];
+		$_SESSION['admin_id'] = $row['admin_id'];
+		$_SESSION['department_id'] = $row['department_id'];
 
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'>";
+        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'/>";
       }
       else
       {
-       echo "<script>alert('Woops! Email or Password was wrong');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'>";
+       echo "<script>alert('Woops! Email or Password or Role was wrong');</script>";
+        echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'/>";
       } 
       break;
     
     case "Manager":
-      $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."'";
+      $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."' AND staffType = '".$role."'";
 
       $result = $conn->query($sql);
     
@@ -58,18 +61,21 @@ if(isset($_POST['btn_login']))
         $_SESSION['staff_id'] = $row["staff_id"];
         $_SESSION['staffName'] = $row['staffName'];
         $_SESSION['staffEmail'] = $row['staffEmail'];
+		$_SESSION['staffType'] = $row['staffType'];
+		$_SESSION['admin_id'] = $row['admin_id'];
+		$_SESSION['department_id'] = $row['department_id'];
         
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'>";
+        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'/>";
       }
       else
-      { echo "<script>alert('Woops! Email or Password was wrong');</script>";
-    echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'>";
+      { echo "<script>alert('Woops! Email or Password or Role was wrong');</script>";
+    echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'/>";
       }
        break;
 
-      case "Staff":
-      $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."'";
+      case "Rider":
+      $sql ="SELECT * FROM staff WHERE staffEmail = '".$email."' AND staffPassword = '".$password."' AND staffType = '".$role."'";
 
       $result = $conn->query($sql);
     
@@ -80,15 +86,18 @@ if(isset($_POST['btn_login']))
         $_SESSION['staff_id'] = $row["staff_id"];
         $_SESSION['staffName'] = $row['staffName'];
         $_SESSION['staffEmail'] = $row['staffEmail'];
+		$_SESSION['staffType'] = $row['staffType'];
+		$_SESSION['admin_id'] = $row['admin_id'];
+		$_SESSION['department_id'] = $row['department_id'];
         
         
       echo "<script>alert('Login Success!');</script>";
-      echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'>";
+      echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'/>";
       }
       else
       {
-   echo "<script>alert('Woops! Email or Password was wrong');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'>";
+		echo "<script>alert('Woops! Email or Password or Role was wrong');</script>";
+        echo"<meta http-equiv='refresh' content='0; url=loginStaff.php'/>";
      }
      break;
 
@@ -125,7 +134,7 @@ if(isset($_POST['btn_login']))
 
   <form name="loginForm" method="post" >
     <form action="" method="POST" class="login-email">
-      <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+      <p align="center" class="login-text" style="font-size: 2rem; font-weight: 800;">Login Staff</p>
       <div class="container">
         <p>Please login to your account</p>
 
@@ -139,9 +148,9 @@ if(isset($_POST['btn_login']))
 
         <select class="form-control" name="role" autofocus required>
           <option selected="true" disabled="disabled" value="">- Select role -</option >
-          <option value="Staff">Admin</option>
-          <option value="Staff">Rider</option>
-          <option value="Staff">Manager</option>
+          <option value="Admin">Admin</option>
+          <option value="Rider">Rider</option>
+          <option value="Manager">Manager</option>
           </select>
 
           <div class="text-center pt-3 mb-5 pb-1">
@@ -150,7 +159,7 @@ if(isset($_POST['btn_login']))
 
           <div class="d-flex align-items-center justify-content-center pb-4">
           <p class="login-register-text">Don't have an account?
-          <a href="#" onclick="window.open('http://localhost/fkfood/register.php')"; >Register Here</a>.</p>
+          <a href="#" onclick="window.open('http://localhost/fkfood/regStaff.php')"; >Register Here</a>.</p>
           </div>
 
           <div class="result text-center mb-0 text-danger"  id="result"><p><?php echo $msg?></p>
