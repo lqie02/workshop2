@@ -1,6 +1,6 @@
 <?php
 
-@include 'config.php';
+@include 'connection.php';
 
 if(isset($_POST['add_product'])){
    $p_name = $_POST['p_name'];
