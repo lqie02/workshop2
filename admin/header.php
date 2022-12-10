@@ -5,8 +5,8 @@
       <br></br><a href="#" class="logo">FK Restaurant</a>
 
       <nav class="navbar">
-         <a href="addproduct.php">add products</a>
-         <a href="viewmenu.php">menu</a>
+         <a href="admin/addproduct.php">add products</a>
+         <a href="customer/viewmenu.php">menu</a>
       </nav>
 
       <?php
