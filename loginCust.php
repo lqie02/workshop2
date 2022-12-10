@@ -41,11 +41,11 @@ if(isset($_POST['btn_login']))
 
       if ($result->num_rows($result) > 0)
       {
-        $row = $result->fetch_assoc();
+        $row = mysqli_fetch_assoc($result);
 
         $_SESSION['customer_id'] = $row["customer_id"];
-        $_SESSION['custname'] = $row['custName'];
-        $_SESSION['custemail'] = $row['custEmail'];
+        $_SESSION['custName'] = $row['custName'];
+        $_SESSION['custEmail'] = $row['custEmail'];
 
         mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
         echo "<script>alert('Login Success!');</script>";
@@ -121,11 +121,6 @@ if(isset($_POST['btn_login']))
         <div class="input-group">
           <input type="password" name="password" id="form2Example22" minlength="8" class="form-control" placeholder="Password" autofocus required/>
         </div>
-
-        <select class="form-control" name="role" autofocus required>
-          <option selected="true" disabled="disabled" value="">- Select role -</option >
-          <option value="Customer">Customer</option>
-          </select>
 
           <div class="text-center pt-3 mb-5 pb-1">
           <button name="btn_login" class="btn">Log in</button>
