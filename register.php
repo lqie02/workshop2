@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<link rel="icon" href="img/2.png" type="image/png" sizes="20x20">
-	<link rel="stylesheet" href="regStyle.css">
+	<link rel="stylesheet" href="regStyle1.css">
 	<title> Register </title>
 
 </head>
