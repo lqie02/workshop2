@@ -1,6 +1,6 @@
 <?php
 
-@include 'connection.php';
+@include '../connection.php';
 
 ?>
 
@@ -11,29 +11,30 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>menu</title>
-
+   <link rel="icon" href="../img/2.png" type="image/png" sizes="20x20">
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="../css/styleheader.css" />
+      <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
    
-<?php
+     <div class="menu-bar">
+      <h1 class="logo">FK<span>Restaurant</span></h1>
+      <ul>     
+        <li><a href="viewmenu.php"> Menu</a></li>
 
-if(isset($message)){
-   foreach($message as $message){
-      echo '<div class="message"><span>'.$message.'</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
-   };
-};
+        <li><a href="#">Category <i class="fa fa-search"></i></a></li>
+        <li><a href="">Edit Profile</a></li>
+        <li><a href="#">Contact us</a></li>
+    </div>
 
-?>
+<!--     <div class="hero">
+      &nbsp;
+    </div> -->
 
-<?php include '..\header.php'; ?>
-
-<div class="container">
 
 <section class="products">
 
@@ -50,7 +51,7 @@ if(isset($message)){
 
       <form action="" method="post">
          <div class="box">
-            <img src="admin/uploaded_img/<?php echo $fetch_product['image']; ?>" alt="">
+            <img src="uploaded_img/<?php echo $fetch_product['image']; ?>" alt="">
             <h3><?php echo $fetch_product['itemName']; ?></h3>
             <div class="price">RM<?php echo $fetch_product['unitPrice']; ?></div>
             <input type="hidden" name="product_name" value="<?php echo $fetch_product['itemName']; ?>">
