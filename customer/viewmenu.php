@@ -21,19 +21,18 @@
 </head>
 <body>
    
+     
      <div class="menu-bar">
       <h1 class="logo">FK<span>Restaurant</span></h1>
       <ul>     
-        <li><a href="viewmenu.php"> Menu</a></li>
-
-        <li><a href="#">Category <i class="fa fa-search"></i></a></li>
-        <li><a href="">Edit Profile</a></li>
-        <li><a href="#">Contact us</a></li>
+       <li><a href="viewmenu.php">Menu<i class="fas fa-drumstick-bite"></i></a></li>
+        <li><a href="#">Category <i class="fa fa-list"></i></a></li>
+          <li><a href="#">Locate us <i class="fas fa-map-marker-alt"></i></a></li>
+        <li><a href="">Edit Profile <i class="fa fa-user"></i></a></li>
+        <li><a href="#">Contact us  <i class="fa fa-phone"></i></a></li>
     </div>
+        
 
-<!--     <div class="hero">
-      &nbsp;
-    </div> -->
 
 
 <section class="products">
