@@ -40,7 +40,7 @@ if(isset($_POST['btn_login']))
 		$_SESSION['department_id'] = $row['department_id'];
 
         echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'/>";
+        echo"<meta http-equiv='refresh' content='0; url=admin/dashboard.php'/>";
       }
       else
       {
@@ -92,7 +92,7 @@ if(isset($_POST['btn_login']))
         
         
       echo "<script>alert('Login Success!');</script>";
-      echo"<meta http-equiv='refresh' content='0; url=admin/addproduct.php'/>";
+      echo"<meta http-equiv='refresh' content='0; url=rider/menu.php'/>";
       }
       else
       {
