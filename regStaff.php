@@ -81,6 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		<form action="" method="POST" class="login-email">
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Staff Register</p>
 			
+			
 			<div class="input-group">
 				<input type="text" placeholder=" Name" name="staffName" value="<?php echo $staffName; ?>" required>
 			</div>
