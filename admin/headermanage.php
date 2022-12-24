@@ -5,7 +5,7 @@
 	<link rel="icon" href="../img/2.png" type="image/png" sizes="20x20">
    
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="admin1.css">
+    <link rel="stylesheet" type="text/css" href="adminmanage.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	
   </head>
