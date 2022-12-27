@@ -1,0 +1,61 @@
+@charset "utf-8";
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.main 
+{
+  	width: 100%;
+  	background-image: url("img/4.png");
+	background-position: center;
+    background-size: cover;
+    height: 109vh;
+}
+
+
+.icon
+{
+	width: 500px;
+    float: left;
+    height: 70px;
+}
+
+.logo
+{
+	color: rgb(255, 255, 90);
+    font-size: 40px;
+    font-family: Constantia, "Lucida Bright", "DejaVu Serif", Georgia, "serif";
+    align-items: center;
+    float: center;
+	margin-left: 20px;
+}
+
+.button
+{
+    height: 100px;
+    width: 400px;
+    display: block;
+    display: inline-block;
+    border-radius: 15px;
+    background-color: #DBA800;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 25px;
+	margin-left: 300px;
+	
+}
+
+.button:hover 
+{
+  background-color: white; /* Green */
+  color: black;
+  border: 3px solid #DBA800;
+}
+
+
