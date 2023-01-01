@@ -21,21 +21,21 @@
 .container .btn {
   position: absolute;
   top: 50%;
-  left:50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  color: white;
+  -ms-transform: translate(-80%, -80%);
+  background-color: #ffcc66;
+  color: black;
   font-size: 16px;
   padding: 12px 24px;
-  border: none;
+  border: black;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 7px;
   text-align: center;
 }
 
 .container .btn:hover {
-  background-color: black;
+  background-color:  #ffe6b3;
 }
 
   
