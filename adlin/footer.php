@@ -14,7 +14,7 @@
  <footer class="footer-distributed">
 
       <div class="footer-left">
-          <center><img src="2.png"></center>
+          <center><img src="img/2.png"></center>
       
 
         <p class="footer-links">
@@ -33,19 +33,19 @@
       <div class="footer-center">
         <div>
 
-            <p>Sokongan</p>
+            <p>Support</p>
             <br></br>
-            Terma & Syarat</br>
-			 <br>Dasar Pemesanan Web</br>
-			 <br>Polisi Privasi dan Perlindungan Data Peribadi</br>
-			 <br>Maklumat Pemakanan</br>
-			 <br>Soalan Lazim</br>
+            Terms & Conditions</br>
+			 <br>Web Ordering Policy</br>
+			 <br>Privacy Policy</br>
+			 <br>FAQ</br>
+			 <br>Nutritional Information</br>
 			 <br>Mobile Web</br>
      </div>
  </div>
       <div class="footer-right">
         <p class="footer-company-about">
-          <p>Ikuti Kami</p>
+          <p>Follow Us</p>
           <p><a href=""><img src="../img/fb.png"   height="50" width="50"></a></p>
         </div>
       </div>
