@@ -1,52 +1,91 @@
 <?php  
-
-include "connection.php";
-error_reporting(0);
 session_start();
-
+include "connection.php";
 $msg='';
 
 if(isset($_POST['btn_login']))
 {
-
-  function test_input($data) 
+	function test_input($data) 
   {
       $data = trim($data);
       $data = stripslashes($data);
       $data = htmlspecialchars($data);
       return $data;
   }
-	//Getting Post Values
-    $email = test_input($_POST['email']);
-    $password = test_input($_POST['password']);
+	$time=time()-30;
+    $ip_address=getIpAddr();
+	
+	$query = mysqli_query($conn, "select count(*) as total_count from loginlogs where TryTime > $time and IpAddress='$ip_address'"); 
+  	$check_login_row=mysqli_fetch_assoc($query);
+  	$total_count=$check_login_row['total_count'];
+	
+	//checking when the attempts exceed three,wait 15 sec to login again
+	if($total_count == 3)
+	{
+		$msg="To many failed login attempts. Please login after 30 sec.";
+	}
+	else
+	{
+		//Getting Post Values
+		$email = test_input($_POST['email']);
+		$password = test_input($_POST['password']);
 
-      $sql ="SELECT * FROM customer WHERE custEmail = '".$email."' AND custPassword = '".$password."'";
+		  $sql ="SELECT * FROM customer WHERE custEmail = '".$email."' AND custPassword = '".$password."'";
 
-      $result = $conn->query($sql);
-    
-      if($result->num_rows > 0)
-      {
-        $row = $result->fetch_assoc();
+		  $result = mysqli_query($conn,$sql);
 
-        $_SESSION['customer_id'] = $row["customer_id"];
-        $_SESSION['custName'] = $row['custName'];
-		$_SESSION['custEmail'] = $row['custEmail'];
-		$_SESSION['custTel'] = $row['custTel'];
-		$_SESSION['address'] = $row['address'];
+		  if(mysqli_num_rows($result) > 0)
+		  {
+			$row = mysqli_fetch_assoc($result);
 
-       
-        echo "<script>alert('Login Success!');</script>";
-        echo"<meta http-equiv='refresh' content='0; url=customer/Location.php'/>";
-		  
-      }
-      else
-	  {
-		  echo "<script>alert('Woops! Email or Password was wrong');</script>";
-          echo"<meta http-equiv='refresh' content='0; url=loginCust.php'/>";
-	  }
-        
+			$_SESSION['customer_id'] = $row["customer_id"];
+			$_SESSION['custName'] = $row['custName'];
+			$_SESSION['custEmail'] = $row['custEmail'];
+			$_SESSION['custTel'] = $row['custTel'];
+			$_SESSION['address'] = $row['address'];
+			$_SESSION['Active_Time'] = time();
 
+       		mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
+			echo "<script>alert('Login Success!');</script>";
+			echo"<meta http-equiv='refresh' content='0; url=customer/Location.php'/>";
+
+		  }
+		  else
+		  {
+			  
+			  $total_count++;
+			$rem_attm = 3 - $total_count;
+			if($rem_attm == 0)
+			{
+
+			  $msg="To many failed login attempts. Please login after 30 sec";
+			}
+			else
+			{
+
+			  $msg="Email or Password was wrong.<br/>$rem_attm attempts remaining";
+			}
+			$try_time=time();
+			mysqli_query($conn,"INSERT INTO loginlogs(IpAddress,TryTime) values('$ip_address','$try_time')");
+		  }
+	}
 }
+  // Getting IP Address
+  function getIpAddr(){
+  if (!empty($_SERVER['HTTP_CLIENT_IP']))
+  {
+    $ipAddr=$_SERVER['HTTP_CLIENT_IP'];
+  }
+  elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+  {
+    $ipAddr=$_SERVER['HTTP_X_FORWARDED_FOR'];
+  }
+  else
+  {
+    $ipAddr=$_SERVER['REMOTE_ADDR'];
+  }
+  return $ipAddr;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -90,9 +129,9 @@ if(isset($_POST['btn_login']))
           <div class="d-flex align-items-center justify-content-center pb-4">
           <p align="center" class="login-register-text">Do not have an account?
           <a href="regCust.php" >Register Here</a>.</p>
-          </div>
+          </div><br>
 
-          <div class="result text-center mb-0 text-danger"  id="result"><p><?php echo $msg?></p>
+          <div class="result text-center mb-0 text-danger"  id="result"  align="center" style="color: red"><p><?php echo $msg ?></p>
           </div>
         </div>
       </form>
