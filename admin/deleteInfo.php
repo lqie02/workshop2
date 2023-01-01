@@ -6,6 +6,15 @@ include('../connection.php');
 if(isset($_SESSION["staff_id"]))
 {
 	$id= $_SESSION["staff_id"];
+	
+	if((time()-$_SESSION['Active_Time'])>300)
+	{
+		header('Location:../loginStaff.php');
+	}
+	else
+	{
+		$_SESSION['Active_Time'] = time();
+	}
 }
 else{
 	header('Location: ../loginStaff.php');

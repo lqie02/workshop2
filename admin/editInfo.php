@@ -6,6 +6,15 @@ include('../connection.php');
 if(isset($_SESSION["staff_id"]))
 {
 	$id= $_SESSION["staff_id"];
+	
+	if((time()-$_SESSION['Active_Time'])>300)
+	{
+		header('Location:../loginStaff.php');
+	}
+	else
+	{
+		$_SESSION['Active_Time'] = time();
+	}
 }
 else{
 	header('Location: ../loginStaff.php');
@@ -28,7 +37,8 @@ if(isset($_POST['submit']))
 	
 	if($res)
 	{
-		header("Location: admin_manage.php?msg=Data upadate successfully");
+		echo "<script>alert('Update successfully');</script>";
+		echo"<meta http-equiv='refresh' content='0; url=admin_manage.php'/>";
 	}
 	else
 	{
@@ -115,6 +125,7 @@ if(isset($_POST['submit']))
 						<button type="submit" class="btn btn-success" name="submit">Update</button> &nbsp;
 						<a href="admin_manage.php" class="btn btn-danger"> Cancel</a>
 					</div>
+					
 					
 				</div>
 			</form>

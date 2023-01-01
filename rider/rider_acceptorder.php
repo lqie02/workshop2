@@ -4,6 +4,15 @@ include('../connection.php');
 if(isset($_SESSION["staff_id"]))
 {
 	$id= $_SESSION["staff_id"];
+	
+	if((time()-$_SESSION['Active_Time'])>300)
+	{
+		header('Location:../loginStaff.php');
+	}
+	else
+	{
+		$_SESSION['Active_Time'] = time();
+	}
 }
 else{
 	header('Location: ../loginStaff.php');
@@ -53,7 +62,7 @@ if(isset($_GET['delivery_id'])&&($_GET['deliveryStatus']))
 		    <div class="container">
 			<table class="table table-hover text-center">
 				 <thead class="table-dark">
-				<tr>
+				<tr  style="font-size: 17px">
 					<th scope="col">NO.</th>
 					<th scope="col">ORDER ID</th>
 					<th scope="col">NAME</th>
@@ -78,7 +87,7 @@ if(isset($_GET['delivery_id'])&&($_GET['deliveryStatus']))
 		   
 		if(mysqli_num_rows($ret)>0){
 			while ($row=mysqli_fetch_assoc($ret)){
-				?><tr>
+				?><tr  style="font-size: 17px">
 					<td><?php echo $i++ ?></td>
 					<td><?php echo $row['order_id'] ?></td>
 					<td><?php echo $row['custName'] ?></td>

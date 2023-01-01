@@ -5,10 +5,23 @@ if(isset($_SESSION["staff_id"]))
 {
 	$id= $_SESSION["staff_id"];
 	$name= $_SESSION["staffName"];
+	
+	if((time()-$_SESSION['Active_Time'])>300)
+	{
+		header('Location:../loginStaff.php');
+	}
+	else
+	{
+		$_SESSION['Active_Time'] = time();
+	}
 }
 else{
 	header('Location: ../loginStaff.php');
-}	
+}
+$qry = mysqli_query($conn,"SELECT COUNT(*) as amount FROM delivery WHERE deliveryStatus!='Delivered'");
+
+$row = mysqli_fetch_assoc($qry);
+
 ?>
 
 <!doctype html>
@@ -19,6 +32,7 @@ else{
 <title>Rider Menu</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="menuStyle.css">
+	<link rel="stylesheet" type="text/css" href="menuheader.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
 	
@@ -40,11 +54,36 @@ else{
 		</ul>
 	</nav>
 	
-	<div class="text">
+	<div>
 	<p>Welcome, </p>
-		<p class="txt"> <?php echo $_SESSION["staffName"]?>.</p>
+		<p class="txt"> <?php echo $_SESSION["staffName"]?>.</p><br><br>
+	<p class="txt3">Note: <span><?php echo $row['amount']; ?></span> undelivered orders. Do you want to accept?</p>	
+	<p class="txt1">Current Date : <span id="date-today"></span></p>
+	<p class="txt2">Current Time : 
+		<span id="current-time"></span>
+	
+	</div>
+	
+	
+	
+	<script>
+		let dateToday = document.getElementById("date-today");
 		
-		</div>
+		let today = new Date();
+		let day = `${today.getDate() < 10 ? "0" : ""}${today.getDate()}`;
+		let month = `${(today.getMonth()+1) < 10 ? "0" : ""}${today.getMonth()+1}`;
+		let year = today.getFullYear();
+		
+		dateToday.textContent = `${day}/${month}/${year}`;
+	</script>
+	<script>
+		let time = document.getElementById("current-time");
+		setInterval(()=>{
+			let d = new Date();
+			time.innerHTML = d.toLocaleTimeString();
+		},10)
+		</script>
+
 	
 </body>
 </html>

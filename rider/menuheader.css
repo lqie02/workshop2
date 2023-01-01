@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+div
+{
+	margin-left: 200px;
+	margin-top: 150px;
+}
+
+p
+{
+	margin-top: -10px;
+	font-size: 43px;
+}
+p.txt
+{
+	margin-top: 10px;
+	text-align: left;
+	color:#162A69;
+	margin-left: 160px;
+}
+
+p.txt1
+{
+	margin-top: 100px;
+	font-size:35px;
+}
+
+p.txt2
+{
+	margin-top: 20px;
+
+	font-size: 35px;
+}
+
+p.txt3
+{
+	margin-top: 50px;
+	font-size: 40px;
+}

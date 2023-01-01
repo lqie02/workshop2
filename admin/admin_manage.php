@@ -4,6 +4,15 @@ include('../connection.php');
 if(isset($_SESSION["staff_id"]))
 {
 	$id= $_SESSION["staff_id"];
+	
+	if((time()-$_SESSION['Active_Time'])>300)
+	{
+		header('Location:../loginStaff.php');
+	}
+	else
+	{
+		$_SESSION['Active_Time'] = time();
+	}
 }
 else{
 	header('Location: ../loginStaff.php');
@@ -12,7 +21,8 @@ else{
 ?>
 
 <!doctype html>
-<html lang="en" dir="ltr"><head>
+<html lang="en" dir="ltr">
+<head>
 <meta charset="utf-8">
 	<link rel="icon" href="../img/2.png" type="image/png" sizes="20x20">
     
@@ -31,8 +41,8 @@ else{
 	<?php include('headermanage.php'); ?>
 	
 	<div class="container">
-		<br>
-		
+		<br><br>
+		<a href="addStaff.php" class="btn btn-dark">Add New Staff</a>
 		<br><br><br>
 			<table class="table table-hover text-center">
 			  <thead class="table-dark">
