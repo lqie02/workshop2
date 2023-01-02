@@ -1,79 +1,89 @@
-<?php
+<?php ob_start(); $title = "Manu"; include('header.php') ;?>
 
-@include '../connection.php';
-
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="icon" href="../img/2.png" type="image/png" sizes="20x20">
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-   <!-- custom css file link  -->
-      <link rel="stylesheet" href="../css/styleheader.css" />
-      <link rel="stylesheet" href="../css/style.css">
-</head>
 <body>
-   
-     
-     <div class="menu-bar">
-      <h1 class="logo">FK<span>Restaurant</span></h1>
-      <ul>     
-       <li><a href="viewmenu.php">Menu<i class="fas fa-drumstick-bite"></i></a></li>
-        <li><a href="#">Category <i class="fa fa-list"></i></a></li>
-          <li><a href="#">Locate us <i class="fas fa-map-marker-alt"></i></a></li>
-        <li><a href="">Edit Profile <i class="fa fa-user"></i></a></li>
-        <li><a href="#">Contact us  <i class="fa fa-phone"></i></a></li>
-    </div>
-        
 
-
+<div class="container">
 
 <section class="products">
 
    <h1 class="heading">MENU</h1>
-
-   <div class="box-container">
+   <div class="msg"></div>
+   <div class="row">
+   <div class="box-container" id="product">
 
       <?php
-      
-      $select_products = mysqli_query($conn, "SELECT * FROM `item`");
-      if(mysqli_num_rows($select_products) > 0){
-         while($fetch_product = mysqli_fetch_assoc($select_products)){
-      ?>
 
-      <form action="" method="post">
-         <div class="box">
-            <img src="uploaded_img/<?php echo $fetch_product['image']; ?>" alt="">
+      $sql = "SELECT * FROM item ";
+
+      $implode = array();
+
+      if (isset($_GET['category_id'])) {
+        $implode[] = 'category_id='.$_GET['category_id'];
+      }
+
+      if ($implode) {
+         $sql .= " WHERE " . implode(" AND ", $implode);
+      }
+
+      $query = $db->query($sql);
+
+      if($query->num_rows > 0){?>
+        <?php foreach ($query->rows as $key => $fetch_product) { ?>
+         <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
+          <div class="box">
+            <img src="/fkfood<?php echo $fetch_product['image']; ?>" alt="">
             <h3><?php echo $fetch_product['itemName']; ?></h3>
             <div class="price">RM<?php echo $fetch_product['unitPrice']; ?></div>
-            <input type="hidden" name="product_name" value="<?php echo $fetch_product['itemName']; ?>">
-            <input type="hidden" name="product_price" value="<?php echo $fetch_product['unitPrice']; ?>">
-             <input type="hidden" name="product_status" value="<?php echo $fetch_product['itemStatus']; ?>">
-            <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
-            <input type="submit" class="btn" value="add to cart" name="add_to_cart">
-         </div>
-      </form>
+            <input type="hidden" name="item_id" value="<?php echo $fetch_product['item_id'];?>">
 
-      <?php
-         };
-      };
-      ?>
+            <button type="button" id="button-cart" onclick="addCart('<?php echo $fetch_product['item_id']; ?>')" class="btn btn-primary" name="add_to_cart">Add to cart</button>
+          </div>
+       </div>
+        <?php } ?>
+      <?Php } else {?>
+        <div class="empty"> Item not Found </div>
+      <?php } ?>
 
+   
+   </div>
    </div>
 
 </section>
 
 </div>
 
+<script type="text/javascript"><!--
+function addCart(item_id){
+  var post_value = { item_id : item_id, post_type: 'add' }
+  $.ajax({
+    url: '/fkfood/customer/addCart.php',
+    type: 'post',
+    data: post_value,
+    dataType: 'json',
+    beforeSend: function() {
+      
+    },
+    complete: function() {
+
+    },
+    success: function(json) {
+      $('.alert, .text-danger').remove();
+
+      if (json['error']) {
+         $('.msg').after('<div class="alert alert-danger">' + json['error'] + '</div>');
+      }
+      
+      if (json['success']) {
+        $('.msg').after('<div class="alert alert-success">' + json['success'] + '</div>');
+      }
+    },
+
+  });
+};
+//--></script>
+
 <!-- custom js file link  -->
-<script src="js/script.js"></script>
+<script src="../js/script.js"></script>
 
 </body>
 </html>
