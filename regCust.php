@@ -15,6 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 	}
 
 	$custName = test_input($_POST['custName']);
+	$custIc = test_input($_POST['custIc']);
 	$custEmail = test_input($_POST['custEmail']);
 	$custTel = test_input($_POST['custTel']);
 	$address = test_input($_POST['address']);
@@ -26,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 		echo "<script>alert('Two passwords that enter do not match');</script>";
 		echo"<meta http-equiv='refresh' content='0; url=regCust.php'/>";
 	} else {
-		$query = "INSERT INTO customer (custName, custEmail, custTel, address, custpassword) VALUES ('$custName', '$custEmail', '$custTel', '$address', '$password')";
+		$query = "INSERT INTO customer (custName, custIc, custEmail, custTel, address, custpassword) VALUES ('$custName', '$custIc','$custEmail', '$custTel', '$address', '$password')";
 
 		// echo($conn->query($query));
 		// exit();
@@ -63,6 +64,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
             <p class="login-text" style="font-size: 2rem; font-weight: 800;">Customer Register</p>
 			<div class="input-group">
 				<input type="text" placeholder=" Name" name="custName" value="<?php echo $custName; ?>" required>
+			</div>
+			<div class="input-group">
+				<input type="text" placeholder=" Ic Number" name="custIc" value="<?php echo $custIc; ?>" required>
 			</div>
 			<div class="input-group">
 				<input type="email" placeholder="Email" name="custEmail" value="<?php echo $custEmail; ?>" required>
