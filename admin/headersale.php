@@ -17,8 +17,8 @@
         <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
 		</label>
-		<!--<label class="logo">FK Restaurant</label>-->
-		<img src="../img/logo.png" type="image/png" alt="FK Restaurant">
+		<!--<label class="logo">FK Restaurant</label>
+		<img src="../img/logo.png" type="image/png" alt="FK Restaurant">-->
 		<label class="logo" >FK Restaurant</label>
 		<ul>
 		<li><a   href="dashboard.php">Home</a></li>
