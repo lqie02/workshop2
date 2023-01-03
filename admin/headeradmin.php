@@ -20,7 +20,7 @@
 		</label>
 		<!--<label class="logo">FK Restaurant</label>
 		<img src="../img/logo.png" type="image/png" alt="FK Restaurant">-->
-		<label class="logo" >ForiegnKey Restaurant</label>
+		<label class="logo" >FK Restaurant</label>
 		<ul>
 		<li><a  class="active" href="dashboard.php">Home</a></li>
 		<li><a  href="admin_manage.php">Manage Staff</a></li>
