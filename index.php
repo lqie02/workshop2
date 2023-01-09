@@ -133,6 +133,5 @@ if(isset($_POST['btn_login']))
     </form>
   </section>
 </body>
-<!-- 
+
 <?php include('footer.php');?>
- -->
