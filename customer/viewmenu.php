@@ -1,4 +1,4 @@
-<?php ob_start(); $title = "Manu"; include('header.php') ;?>
+<?php ob_start(); $title = "Menu"; include('header.php') ;?>
 
 <body>
 
@@ -25,10 +25,13 @@
          $sql .= " WHERE " . implode(" AND ", $implode);
       }
 
-      $query = $db->query($sql);
+
+      $query =mysqli_query($conn,$sql);
 
       if($query->num_rows > 0){?>
-        <?php foreach ($query->rows as $key => $fetch_product) { ?>
+
+
+        <?php while($fetch_product = mysqli_fetch_assoc($query)) { ?>
          <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
           <div class="box">
             <img src="/fkfood<?php echo $fetch_product['image']; ?>" alt="">
