@@ -47,7 +47,7 @@
 
 
       <div class="form">
-        <form action="editla.php" method="post">
+        <form action="edit.php" method="post">
         <label>Name</label>
         <input type="text" style="font-size: 16px" placeholder="Name" name="custName">
 
