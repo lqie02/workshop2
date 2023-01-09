@@ -32,8 +32,13 @@
 
 
         <?php while($fetch_product = mysqli_fetch_assoc($query)) { ?>
-         <div class="col-sm-12 col-md-4 col-lg-4 col-xs-12">
-          <div class="box">
+       
+
+        <!--   border for product -->
+          <div class="col-md-3">
+            <form method="post">
+          <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:10px; padding:16px;" align="center">
+
             <img src="/fkfood<?php echo $fetch_product['image']; ?>" alt="">
             <h3><?php echo $fetch_product['itemName']; ?></h3>
             <div class="price">RM<?php echo $fetch_product['unitPrice']; ?></div>
@@ -41,6 +46,7 @@
 
             <button type="button" id="button-cart" onclick="addCart('<?php echo $fetch_product['item_id']; ?>')" class="btn btn-primary" name="add_to_cart">Add to cart</button>
           </div>
+          <br><br>
        </div>
         <?php } ?>
       <?Php } else {?>
