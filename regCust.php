@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 }
 ?>
-
+<html>
 <body>
 	<div class="container">
 		<form action="" method="POST" class="login-email">
@@ -77,6 +77,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 			<p class="login-register-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Have an account? <a href="index.php">Login Here</a>.</p>
 		</form>
 	</div>
+	
 </body>
 
-<?php include('footer.php');?>
+
+	</html>
