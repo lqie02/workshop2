@@ -47,7 +47,7 @@ if(isset($_POST['btn_login']))
 
        		mysqli_query($conn,"delete from loginlogs where IpAddress='$ip_address'");
 			echo "<script>alert('Login Success!');</script>";
-			echo"<meta http-equiv='refresh' content='0; url=customer/Location.php'/>";
+			echo"<meta http-equiv='refresh' content='0; url=customer/homepage.php'/>";
 
 		  }
 		  else
