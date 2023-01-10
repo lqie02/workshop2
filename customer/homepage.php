@@ -1,5 +1,6 @@
 <?php $title = 'homepage';
  include('header.php') ;?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,10 +41,10 @@
 
   
 </style>
-
+<div style="background-color:#f5f5f0">
 </head>
+<div style="background-color:#f5f5f0">
 <body>
-
 <div class="slideshow-container">
 
 <div class="mySlides fade">
