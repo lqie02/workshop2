@@ -122,7 +122,7 @@ if(isset($_POST['btn_login']))
 
           <div class="d-flex align-items-center justify-content-center pb-4">
           <p align="center" class="login-register-text">Do not have an account?
-          <a href="manager/regCust.php" >Register Here</a>.</p>
+          <a href="regCust.php" >Register Here</a>.</p>
           </div>
 
           <div class="result text-center mb-0 text-danger"  id="result"  align="center" style="color: red"><p><?php echo $msg ?></p>

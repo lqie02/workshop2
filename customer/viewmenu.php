@@ -1,5 +1,5 @@
 <?php ob_start(); $title = "Menu"; include('header.php') ;?>
-
+<?php include('sidebar.php');?>
 <body>
 
 <div class="container">
