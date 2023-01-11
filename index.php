@@ -1,4 +1,4 @@
-<?php ob_start(); $title = 'Customer Login'; include('manager/header.php'); ?>
+<?php ob_start(); $title = 'Customer Login'; include('header.php'); ?>
 
 <?php
 $msg = '';
@@ -133,4 +133,4 @@ if(isset($_POST['btn_login']))
     </form>
   </section>
 </body>
-<?php include('manager/footer.php');?>
+
