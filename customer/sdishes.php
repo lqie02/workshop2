@@ -40,7 +40,7 @@
             <form method="post">
           <div style="border:1px solid #333; background-color:#f1f1f1; border-radius:10px; padding:16px;" align="center">
 
-            <img src="/workshop<?php echo $fetch_product['image']; ?>" alt="">
+            <img src="/workshop2<?php echo $fetch_product['image']; ?>" alt="">
             <h3><?php echo $fetch_product['itemName']; ?></h3>
             <div class="price">RM<?php echo $fetch_product['unitPrice']; ?></div>
             <input type="hidden" name="item_id" value="<?php echo $fetch_product['item_id'];?>">
