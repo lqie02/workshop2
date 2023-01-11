@@ -105,7 +105,7 @@
 function updateDiscount(){
   var post_value = { discount : $('#discount').val(), post_type: 'discount' };
   $.ajax({
-    url: '/fkfood/customer/addCart.php',
+    url: '/workshop2/customer/addCart.php',
     type: 'post',
     data: post_value,
     dataType: 'json',
@@ -134,7 +134,7 @@ function updateDiscount(){
 function remove(item_id){
   var post_value = { item_id : item_id, post_type: 'remove' }
   $.ajax({
-    url: '/fkfood/customer/addCart.php',
+    url: '/workshop2/customer/addCart.php',
     type: 'post',
     data: post_value,
     dataType: 'json',
@@ -162,7 +162,7 @@ function update(item_id){
 
   var post_value = { item_id : item_id, post_type: 'update',qty : qty }
   $.ajax({
-    url: '/fkfood/customer/addCart.php',
+    url: '/workshop2/customer/addCart.php',
     type: 'post',
     data: post_value,
     dataType: 'json',

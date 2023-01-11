@@ -47,7 +47,7 @@
                   </div>
             </div>
             <div class="form-group required">
-            	  <label class="control-label col-sm-2">Rrating</label>
+            	  <label class="control-label col-sm-2">Rating</label>
                   <div class="col-sm-10">
                   	
                     &nbsp;&nbsp;&nbsp; Bad&nbsp;

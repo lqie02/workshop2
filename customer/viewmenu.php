@@ -65,7 +65,7 @@
 function addCart(item_id){
   var post_value = { item_id : item_id, post_type: 'add' }
   $.ajax({
-    url: '/fkfood/customer/addCart.php',
+    url: '/workshop2/customer/addCart.php',
     type: 'post',
     data: post_value,
     dataType: 'json',
