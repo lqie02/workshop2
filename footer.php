@@ -14,7 +14,7 @@
  <footer class="footer-distributed">
 
       <div class="footer-left">
-          <center><img src="img/2.png"></center>
+          <center><img src="../img/2.png"></center>
       
 
         <p class="footer-links">
